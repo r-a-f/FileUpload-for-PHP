@@ -4,19 +4,19 @@ A simple PHP class to upload files.
 
 Example #1:
 ------------
-    *PHP FILE*
+    PHP FILE
 ```php
     <?php
     	$upload = new upload;
-    	$upload->set( 'file_input' , '/var/www/uploads/' , 'images' );
+    	$upload->set( 'inputName' , '/var/www/uploads/' , 'images' );
     	$data = $upload->upload();
     	print_r( $data );
     ?>
 ```
     *HTML FILE*
 ```html
-    <form>
-    	<input type="file_input" name="file" />
+    <form method="post" enctype="multipart/form-data" action="">
+    	<input type="inputName" name="file" />
     	<input type="submit" value="Upload" />
     </form>
 ```
@@ -37,7 +37,7 @@ Example #2:
 ```
     *HTML FILE*
 ```html
-    <form>
+    <form method="post" enctype="multipart/form-data" action="">
     	<input type="file_input" name="file" />
     	<input type="submit" value="Upload" />
     </form>
@@ -57,7 +57,7 @@ Example #3:
 ```
     *HTML FILE*
 ```html
-    <form>
+    <form method="post" enctype="multipart/form-data" action="">
     	<input type="file_input" name="file" />
     	<input type="submit" value="Upload" />
     </form>
