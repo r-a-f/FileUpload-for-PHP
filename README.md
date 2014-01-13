@@ -5,7 +5,7 @@ FileUpload 1.0!
 Example #1:
 ------------
     PHP FILE
-```php
+`````php
     <?php
     	$file = new FileUpload();
 		$file->set_input( "file" );
@@ -16,7 +16,7 @@ Example #1:
 Example #2:
 ------------
     PHP FILE
-```php
+`````php
     <?php
     	$file = new FileUpload();
     	
@@ -84,15 +84,15 @@ Example #2:
 This method will allow you to establish a new mime type
 
 *Example:*
-`php
+```php
 $FileUpload::set_allow_mime_type("text/html");
-`
+```
 
 But you can also use the `mime_helping`( Show more in $mime_helping )
 
-`php
+```php
 $FileUpload::set_allow_mime_type("image"); // Set: image/jpeg, image/jpg, image/pjpeg, image/png and image/gif.
-`
+```
 
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
@@ -100,12 +100,12 @@ $FileUpload::set_allow_mime_type("image"); // Set: image/jpeg, image/jpg, image/
 This method will allow you to set multiple mime types.
 
 *Example:*
-`php
+```php
 $FileUpload::set_allowed_mime_types(array(
 	"text/plain",
 	"text/html"
 ));
-`
+```
 
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
@@ -121,11 +121,11 @@ This method will allow you to set a function to be executed to start the process
 The method used must have a single parameter, which will be equivalent `FileUpload::FileUpload::get_info( )`
 
 *Example:*
-`php
+```php
 $FileUpload::set_callback_input(function( $file ){
 	echo "start!";
 });
-`
+```
 
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
@@ -134,11 +134,11 @@ This method will allow you to set a function to be executed at the end of the pr
 The method used must have a single parameter, which will be equivalent `FileUpload::FileUpload::get_info( )`
 
 *Example:*
-`php
+```php
 $FileUpload::set_callback_output(function( $file ){
 	rename( $file->destination, time() );
 });
-`
+```
 
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
@@ -146,15 +146,15 @@ $FileUpload::set_callback_output(function( $file ){
 ### FileUpload::set_destination_directory( string $destination_directory )
 This method allows you to set where the file will be saved trying to upload.
 *Examples:*
-`php
+```php
 $FileUpload::set_destination_directory("./uploads");
-`
-`php
+```
+```php
 $FileUpload::set_destination_directory("../uploads");
-`
-`php
+```
+```php
 $FileUpload::set_destination_directory("/var/www/html/uploads");
-`
+```
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
@@ -162,30 +162,30 @@ $FileUpload::set_destination_directory("/var/www/html/uploads");
 This method will allow you to set the name of the file you are uploading.
 For the extension of the file, use the wildcard %s.
 *Example:*
-`php
+```php
 $FileUpload::set_filename("my_new_file.%s");
-`
+```
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
 ### FileUpload::set_max_file_size( mixed $size )
 This method allows you to limit the size of file you are uploading.
 *Examples:*
-`php
+```php
 $FileUpload::set_max_file_size("1m"); // Limit is 1MB(1048576 Bytes)
-`
-`php
+```
+```php
 $FileUpload::set_upload_function("1048576"); // Limit is 1MB(1048576 Bytes)
-`
+```
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
 ### FileUpload::set_upload_function( string $function )
 This method allows you to use the function that you need to upload files
 *Example:*
-`php
+```php
 $FileUpload::set_upload_function("copy"); // Default is move_uploaded_file
-`
+```
 
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
@@ -194,9 +194,9 @@ $FileUpload::set_upload_function("copy"); // Default is move_uploaded_file
 Converts bytes to units of measurement.
 *Example:*
 
-`php
+```php
 $FileUpload::size_format("1048576"); // return 1M
-`
+```
 
 > Returns an string.
 
@@ -204,9 +204,9 @@ $FileUpload::size_format("1048576"); // return 1M
 Converts measurement units to bytes
 *Example:*
 
-`php
+```php
 $FileUpload::size_format("1MB"); // return 1048576
-`
+```
 > Returns an `float` or `integer`.
 
 
