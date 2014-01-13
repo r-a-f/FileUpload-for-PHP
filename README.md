@@ -20,8 +20,8 @@ Example #2:
     <?php
     	$file = new FileUpload();
     	
-		// set input( name of input file: show html )
-		$file->set_input( "my_file" );
+		// set input( name of input file: <input type="file" name="file"/> )
+		$file->set_input( "file" );
 		
 		// Directory output
 		$file->set_destination_directory( "upload" );
@@ -74,3 +74,193 @@ Example #2:
 		$file->save();
     ?>
 ```
+
+
+
+## Documentation
+
+
+### FileUpload::set_allow_mime_type( string $mime_type )
+This method will allow you to establish a new mime type
+
+*Example:*
+`php
+$FileUpload::set_allow_mime_type("text/html");
+`
+
+But you can also use the `mime_helping`( Show more in $mime_helping )
+
+`php
+$FileUpload::set_allow_mime_type("image"); // Set: image/jpeg, image/jpg, image/pjpeg, image/png and image/gif.
+`
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+### FileUpload::set_allowed_mime_types( array $mime_types )
+This method will allow you to set multiple mime types.
+
+*Example:*
+`php
+$FileUpload::set_allowed_mime_types(array(
+	"text/plain",
+	"text/html"
+));
+`
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_auto_filename(  )
+This method will allow you to generate a unique name for the file you are uploading.
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_callback_input( mixed $callback )
+This method will allow you to set a function to be executed to start the process.
+The method used must have a single parameter, which will be equivalent `FileUpload::FileUpload::get_info( )`
+
+*Example:*
+`php
+$FileUpload::set_callback_input(function( $file ){
+	echo "start!";
+});
+`
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+### FileUpload::set_callback_output( mixed $callback )
+This method will allow you to set a function to be executed at the end of the process.
+The method used must have a single parameter, which will be equivalent `FileUpload::FileUpload::get_info( )`
+
+*Example:*
+`php
+$FileUpload::set_callback_output(function( $file ){
+	rename( $file->destination, time() );
+});
+`
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_destination_directory( string $destination_directory )
+This method allows you to set where the file will be saved trying to upload.
+*Examples:*
+`php
+$FileUpload::set_destination_directory("./uploads");
+`
+`php
+$FileUpload::set_destination_directory("../uploads");
+`
+`php
+$FileUpload::set_destination_directory("/var/www/html/uploads");
+`
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_filename( string $filename)
+This method will allow you to set the name of the file you are uploading.
+For the extension of the file, use the wildcard %s.
+*Example:*
+`php
+$FileUpload::set_filename("my_new_file.%s");
+`
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_max_file_size( mixed $size )
+This method allows you to limit the size of file you are uploading.
+*Examples:*
+`php
+$FileUpload::set_max_file_size("1m"); // Limit is 1MB(1048576 Bytes)
+`
+`php
+$FileUpload::set_upload_function("1048576"); // Limit is 1MB(1048576 Bytes)
+`
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::set_upload_function( string $function )
+This method allows you to use the function that you need to upload files
+*Example:*
+`php
+$FileUpload::set_upload_function("copy"); // Default is move_uploaded_file
+`
+
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::size_format( mixed $size )
+Converts bytes to units of measurement.
+*Example:*
+
+`php
+$FileUpload::size_format("1048576"); // return 1M
+`
+
+> Returns an string.
+
+### FileUpload::size_in_bytes( mixed $size )
+Converts measurement units to bytes
+*Example:*
+
+`php
+$FileUpload::size_format("1MB"); // return 1048576
+`
+> Returns an `float` or `integer`.
+
+
+### FileUpload::get_info( )
+Returns all information about uploading the file
+> Returns an object.
+
+
+### FileUpload::get_status( )
+Returns the status of the upload. If the condition is `FALSE`, then the file has not yet risen, if the state is `TRUE`, the file upload was performed successfully.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::is_dirpath( string $directory )
+Validates the directory path
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::is_filename( string $filename )
+Validates the filename.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::allow_overwriting()
+If the file you try to upload already exists, it can not be overwritten unless you enable overwriting using this method.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::check_mime_type( string $mime_type )
+Validates the mime type of the file.
+If you have not enabled any mime type, the validation will return `TRUE`.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::clear_allowed_mime_types()
+Removes all previously enabled mime types.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::dir_exists( string $directory )
+Checks if the directory exists.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::file_exists( string $file )
+Checks if the file exists.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::log( string $message [ , ... ] )
+This method lets you add a new log.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
+
+
+### FileUpload::save(  )
+This method loads the file, applies filters and save the file to the set destination.
+> Returns `TRUE` if successful, otherwise returns `FALSE`.
