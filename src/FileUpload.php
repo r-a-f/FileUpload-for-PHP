@@ -8,7 +8,7 @@
 *	@author http://www.webdevfreelance.com/
 *
 *	@package FileUpload
-*	@version 1.0
+*	@version 1.0.1
 */
 class FileUpload
 {
@@ -17,12 +17,12 @@ class FileUpload
 	*	Remember:
 	*		Default function: move_uploaded_file
 	*		Native options:
-	*			- move_uploaded_file
+	*			- move_uploaded_file ( Default and best option )
 	*			- copy
 	*
 	*	@since		1.0
 	*	@version	1.0
-	*	@var		string
+	*	@var		mixex
 	*/
 	private $upload_function = "move_uploaded_file";
 	/**
@@ -149,22 +149,22 @@ class FileUpload
 	*	Construct
 	*
 	*	@since		0.1
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@return 	object
 	*/
 	public function __construct( )
 	{
 		$this->file = array(
-			"status"			=>	false,
-			"mime"				=>	"",
-			"filename"			=>	"",
-			"original"			=>	"",
-			"size"				=>	0,
-			"size_formated"		=>	"0B",
-			"destination"			=>	"",
-			"allowed_mime_types"=>array(),
-			"log"				=>array(),
-			"error"				=>0,
+			"status"			=>	false,	// True: success upload
+			"mime"				=>	"",	// Empty string
+			"filename"			=>	"",	// Empty string
+			"original"			=>	"",	// Empty string
+			"size"				=>	0,	// 0 Bytes
+			"size_formated"			=>	"0B",	// 0 Bytes
+			"destination"			=>	"./",	// Default: ./
+			"allowed_mime_types"		=>	array(),// Allowed mime types
+			"log"				=>	array(),// Logs
+			"error"				=>	0,	// File error
 		);
 		// Change dir to current dir
 		$this->destination_directory = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
@@ -331,7 +331,7 @@ class FileUpload
 	*	Append a mime type to allowed mime types
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		string	$mime
 	*	@return 	boolean
 	*/
@@ -345,10 +345,26 @@ class FileUpload
 				$this->allowed_mime_types[] = strtolower($mime);
 				$this->file["allowed_mime_types"][] = strtolower($mime);
 				return true;
-			}else if( array_key_exists( $mime , $this->mime_helping ) )
+			}else{
+				return $this->set_mime_helping( $mime );
+			}
+		}
+		return false;
+	}
+	/**
+	*	Set allowed mime types from mime helping
+	*
+	*	@since		1.0.1
+	*	@version	1.0.1
+	*	@return 	boolean
+	*/
+	public function set_mime_helping( $name )
+	{
+		if( !empty( $mime) and is_string( $name ) )
+		{
+			if( array_key_exists( $name , $this->mime_helping ) )
 			{
-				$this->set_allowed_mime_types( $this->mime_helping[$mime] );
-				return true;
+				return $this->set_allowed_mime_types($this->mime_helping[ $name ]);
 			}
 		}
 		return false;
@@ -442,7 +458,7 @@ class FileUpload
 	*	Check file exists
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		string	$file_destination
 	*	@return 	boolean
 	*/
@@ -450,10 +466,7 @@ class FileUpload
 	{
 		if( $this->is_filename( $file_destination ) )
 		{
-			if( file_exists( $file_destination ) and is_file( $file_destination ) )
-			{
-				return true;
-			}
+			return ( file_exists( $file_destination ) and is_file( $file_destination ) );
 		}
 		return false;
 	}
@@ -461,7 +474,7 @@ class FileUpload
 	*	Check dir exists
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		string	$path
 	*	@return 	boolean
 	*/
@@ -469,10 +482,7 @@ class FileUpload
 	{
 		if( $this->is_dirpath( $path ) )
 		{
-			if( file_exists( $path ) and is_dir( $path ) )
-			{
-				return true;
-			}
+			return ( file_exists( $path ) and is_dir( $path ) );
 		}
 		return false;
 	}
@@ -480,14 +490,14 @@ class FileUpload
 	*	Check valid filename
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		string	$filename
 	*	@return 	boolean
 	*/
 	public function is_filename( $filename )
 	{
 		$filename = basename( $filename );
-		return !empty( $filename) and ( is_string( $filename ) or is_numeric( $filename ) );
+		return ( !empty( $filename) and ( is_string( $filename ) or is_numeric( $filename ) ) );
 	}
 	/**
 	*	Validate mime type with allowed mime types,
@@ -521,7 +531,7 @@ class FileUpload
 	*	Check valid path
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		string	$filename
 	*	@return 	boolean
 	*/
@@ -531,14 +541,9 @@ class FileUpload
 		{
 			if( DIRECTORY_SEPARATOR == "/" )
 			{
-				if( preg_match( '/^[^*?"<>|:]*$/' , $path ) )
-				{
-					 return true;
-				}
+				return ( preg_match( '/^[^*?"<>|:]*$/' , $path ) == 1 );
 			}else{
-				$tmp = substr($path,2);
-				$bool = preg_match( "/^[^*?\"<>|:]*$/" , $tmp );
-		        return ($bool == 1);
+				return (preg_match( "/^[^*?\"<>|:]*$/" , substr($path,2) ) == 1);
 			}
 		}
 		return false;
@@ -571,7 +576,7 @@ class FileUpload
 	*	Upload file
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@return 	boolean
 	*/
 	public function save()
@@ -589,18 +594,22 @@ class FileUpload
 				}
 				
 				// Replace %s for extension in filename
-				$extension = preg_replace("/[\w\d]*(.[\d\w]+)$/i",'$1',$this->file_array[$this->input]["name"]);
+				// Before: /[\w\d]*(.[\d\w]+)$/i
+				// After: /^[\s[:alnum:]\-\_\.]*\.([\d\w]+)$/iu
+				// Support unicode( utf-8 ) characters
+				// Example: "русские.php" is valid; "中华人民共和国.php" is valid; "Zhōngguó.php" is valid; "Tønsberg.php" is valid
+				$extension = preg_replace("/^[\p{L}\d\s\-\_\.\(\)]*\.([\d\w]+)$/iu",'$1',$this->file_array[$this->input]["name"]);
 				$this->filename = sprintf( $this->filename , $extension );
 				
 				// set file info
-				$this->file["mime"] 		= $this->file_array[$this->input]["type"];
-				$this->file["tmp"]			= $this->file_array[$this->input]["tmp_name"];
-				$this->file["original"]		= $this->file_array[$this->input]["name"];
-				$this->file["size"]			= $this->file_array[$this->input]["size"];
-				$this->file["size_formated"]= $this->size_format($this->file["size"]);
-				$this->file["destination"]	= $this->destination_directory . $this->filename;
-				$this->file["filename"]		= $this->filename;
-				$this->file["error"]		=  $this->file_array[$this->input]["error"];
+				$this->file["mime"] 		=	$this->file_array[$this->input]["type"];
+				$this->file["tmp"]		=	$this->file_array[$this->input]["tmp_name"];
+				$this->file["original"]		=	$this->file_array[$this->input]["name"];
+				$this->file["size"]		=	$this->file_array[$this->input]["size"];
+				$this->file["size_formated"]	=	$this->size_format($this->file["size"]);
+				$this->file["destination"]	=	$this->destination_directory . $this->filename;
+				$this->file["filename"]		=	$this->filename;
+				$this->file["error"]		= 	$this->file_array[$this->input]["error"];
 				
 				// Check if exists file
 				if( $this->file_exists( $this->destination_directory.$this->filename ) )
@@ -693,19 +702,18 @@ class FileUpload
 	*	Convert human file size to bytes
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.0.1
 	*	@param		integer	$size
 	*	@return 	string
 	*/
 	public function size_in_bytes($size)
 	{
+		$unit = "B";
 		$units = array("B"=>0,"K"=>1,"M"=>2,"G"=>3);
 		$matches = array();
 		preg_match("/(?<size>[\d\.]+)\s*(?<unit>b|k|m|g)?/i",$size,$matches);
-		if( !array_key_exists( "unit", $matches ) )
+		if( array_key_exists( "unit", $matches ) )
 		{
-			$unit = "B";
-		}else{
 			$unit = strtoupper( $matches["unit"] );
 		}
 		return (floatval($matches["size"]) * pow(1024, $units[$unit]) ) ;
