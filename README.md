@@ -1,4 +1,4 @@
-FileUpload 1.0!
+FileUpload 1.0.1!
 ------------
  A complete class to upload files with php 5 or higher, but the best: very simple to use.
 
@@ -81,6 +81,7 @@ FileUpload 1.0!
 This method will allow you to establish a new mime type
 
 *Example:*
+
 ```php
 $FileUpload->set_allow_mime_type("text/html");
 ```
@@ -97,6 +98,7 @@ $FileUpload->set_allow_mime_type("image"); // Set: image/jpeg, image/jpg, image/
 This method will allow you to set multiple mime types.
 
 *Example:*
+
 ```php
 $FileUpload->set_allowed_mime_types(array(
 	"text/plain",
@@ -118,6 +120,7 @@ This method will allow you to set a function to be executed to start the process
 The method used must have a single parameter, which will be equivalent [FileUpload::get_info( )](#fileuploadget_info-)
 
 *Example:*
+
 ```php
 $FileUpload->set_callback_input(function( $file ){
 	echo "start!";
@@ -131,6 +134,7 @@ This method will allow you to set a function to be executed at the end of the pr
 The method used must have a single parameter, which will be equivalent [FileUpload::get_info( )](#fileuploadget_info-)
 
 *Example:*
+
 ```php
 $FileUpload->set_callback_output(function( $file ){
 	rename( $file->destination, time() );
@@ -145,6 +149,7 @@ This method allows you to set where the file will be saved trying to upload.
 > If the file path does not exist, you can set the parameter to true `$create_if_not_exist` when trying to create a new path.
 
 *Examples:*
+
 ```php
 $FileUpload->set_destination_directory("./uploads");
 ```
@@ -154,13 +159,18 @@ $FileUpload->set_destination_directory("../uploads");
 ```php
 $FileUpload->set_destination_directory("/var/www/html/uploads");
 ```
+```php
+$FileUpload->set_destination_directory("/var/www/html/uploads/tmp",true); // Path not exists, force create
+```
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
 ### FileUpload::set_filename( string $filename)
 This method will allow you to set the name of the file you are uploading.
 For the extension of the file, use the wildcard %s.
+
 *Example:*
+
 ```php
 $FileUpload->set_filename("my_new_file.%s");
 ```
@@ -169,19 +179,36 @@ $FileUpload->set_filename("my_new_file.%s");
 
 ### FileUpload::set_max_file_size( mixed $size )
 This method allows you to limit the size of file you are uploading.
+
 *Examples:*
+
 ```php
 $FileUpload->set_max_file_size("1m"); // Limit is 1MB(1048576 Bytes)
 ```
 ```php
+$FileUpload->set_max_file_size("1.5Megabytes"); // Limit is 1.5MB(1572864 Bytes)
+```
+```php
+$FileUpload->set_max_file_size("1.5MB"); // Limit is 1.5MB(1572864 Bytes)
+```
+```php
+$FileUpload->set_max_file_size("12Gbytes"); // Limit is 12 GB(12884901888 Bytes)
+```
+```php
 $FileUpload->set_upload_function("1048576"); // Limit is 1MB(1048576 Bytes)
 ```
+```php
+$FileUpload->set_upload_function("1331.2"); // Limit is 1.3KB(1331.2 Bytes)
+```
+
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
 ### FileUpload::set_upload_function( string $function )
 This method allows you to use the function that you need to upload files
+
 *Example:*
+
 ```php
 $FileUpload->set_upload_function("copy"); // Default is move_uploaded_file
 ```
@@ -191,26 +218,63 @@ $FileUpload->set_upload_function("copy"); // Default is move_uploaded_file
 
 ### FileUpload::size_format( mixed $size )
 Converts bytes to units of measurement.
+
 *Example:*
 
 ```php
+$FileUpload->size_format("1"); // return 1B
+```
+```php
+$FileUpload->size_format("1024"); // return 1K
+```
+```php
 $FileUpload->size_format("1048576"); // return 1M
+```
+```php
+$FileUpload->size_format("1073741824"); // return 1G
+```
+```php
+$FileUpload->size_format("1099511627776"); // return 1T
+```
+```php
+$FileUpload->size_format("1331.2"); // return 1.3K
 ```
 
 > Returns an string.
 
 ### FileUpload::size_in_bytes( mixed $size )
 Converts measurement units to bytes
+
 *Example:*
 
 ```php
-$FileUpload->size_format("1MB"); // return 1048576
+$FileUpload->size_in_bytes("1"); // return 1
 ```
+```php
+$FileUpload->size_in_bytes("1B"); // return 1
+```
+```php
+$FileUpload->size_in_bytes("1K"); // return 1024
+```
+```php
+$FileUpload->size_in_bytes("1M"); // return 1048576
+```
+```php
+$FileUpload->size_in_bytes("1G"); // return 1073741824
+```
+```php
+$FileUpload->size_in_bytes("1.56M; // return 1635778.56
+```
+
+
 > Returns an `float` or `integer`.
 
 
 ### FileUpload::get_info( )
 Returns all information about uploading the file.
+
+*Example*
+
 ```php
 stdClass Object
 (
@@ -226,6 +290,7 @@ stdClass Object
     [error] => 0 // File error
 )
 ```
+
 > Returns an object.
 
 
