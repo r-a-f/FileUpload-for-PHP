@@ -140,8 +140,10 @@ $FileUpload->set_callback_output(function( $file ){
 > Returns `TRUE` if successful, otherwise returns `FALSE`.
 
 
-### FileUpload::set_destination_directory( string $destination_directory )
+### FileUpload::set_destination_directory( string $destination_directory [, boolean $create_if_not_exist  = false ])
 This method allows you to set where the file will be saved trying to upload.
+> If the file path does not exist, you can set the parameter to true `$create_if_not_exist` when trying to create a new path.
+
 *Examples:*
 ```php
 $FileUpload->set_destination_directory("./uploads");
