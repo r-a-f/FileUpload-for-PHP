@@ -417,11 +417,15 @@ class FileUpload
 	*/
 	public function set_destination_directory( $destination_directory ,$create_if_not_exist = false )
 	{
+		$this->log( "Input destination: %s" , $destination_directory );
 		$destination_directory = realpath( $destination_directory );
+		$this->log( "Real path: %s" , $destination_directory );
 		if( substr($destination_directory,-1) != DIRECTORY_SEPARATOR )
 		{
 			$destination_directory .= DIRECTORY_SEPARATOR;
+			$this->log( "Fill destination %s" , $destination_directory );
 		}
+		
 		if( $this->is_dirpath( $destination_directory ) )
 		{
 			if( $this->dir_exists( $destination_directory ) )
@@ -450,8 +454,13 @@ class FileUpload
 						return true;
 					}
 				}
+			}else{
+				$this->log( "IMPORTANT! Destination don't exists: %s" , $destination_directory );
 			}
+		}else{
+			$this->log("IMPORTANT! Invalid destination: %s", $destination_directory );
 		}
+		
 		return false;
 	}
 	/**
@@ -552,13 +561,13 @@ class FileUpload
 	*	Allow overwriting files
 	*
 	*	@since		1.0
-	*	@version	1.0
+	*	@version	1.2
 	*	@return 	boolean
 	*/
 	public function allow_overwriting()
 	{
 		$this->log("Overwrite enabled");
-		$this->allow_overwriting = true;
+		$this->overwrite_file = true;
 		return true;
 	}
 	/**
@@ -576,7 +585,7 @@ class FileUpload
 	*	Upload file
 	*
 	*	@since		1.0
-	*	@version	1.0.1
+	*	@version	1.5
 	*	@return 	boolean
 	*/
 	public function save()
@@ -597,7 +606,7 @@ class FileUpload
 				// Before: /[\w\d]*(.[\d\w]+)$/i
 				// After: /^[\s[:alnum:]\-\_\.]*\.([\d\w]+)$/iu
 				// Support unicode( utf-8 ) characters
-				// Example: "русские.php" is valid; "中华人民共和国.php" is valid; "Zhōngguó.php" is valid; "Tønsberg.php" is valid
+				// Example: "???????.php" is valid; "???????.php" is valid; "Zhongguó.php" is valid; "Tønsberg.php" is valid
 				$extension = preg_replace("/^[\p{L}\d\s\-\_\.\(\)]*\.([\d\w]+)$/iu",'$1',$this->file_array[$this->input]["name"]);
 				$this->filename = sprintf( $this->filename , $extension );
 				
@@ -660,6 +669,17 @@ class FileUpload
 					$this->file_array[$this->input]["tmp_name"],
 					$this->destination_directory . $this->filename
 				));
+				if( $this->file["status"] )
+				{
+					$this->log( "The copy is success." );
+				}else{
+					if( !is_writable( $this->destination_directory ) )
+					{
+						$this->log( "Unable to move the file to the specified target due to problems with permissions(%d)." , substr(sprintf('%o', fileperms($this->destination_directory)), -4) );
+					}else{
+						$this->log( "Error in upload" );
+					}
+				}
 				// Execute output callback
 				if( !empty( $this->callbacks["output"] ) )
 				{
