@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP)
 
+[![GitHub version](https://badge.fury.io/gh/olaferlandsen%2FFileUpload-for-PHP.png)](http://badge.fury.io/gh/olaferlandsen%2FFileUpload-for-PHP)
+
+
+
 FileUpload 1.5
 ------------
 A complete class to upload files with php 4.3+ or higher, but the best: very simple to use.
