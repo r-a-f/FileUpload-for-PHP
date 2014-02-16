@@ -8,9 +8,9 @@ FileUpload 1.5
 ------------
 A complete class to upload files with php 5.3+ or higher, but the best: very simple to use.
 
-> This project was recently updated to 1.5 and is `PSR-2` and `PSR-2` compliant and supports `Composer` integration.
+> This project was recently updated to 1.5 and is `PSR-0`, `PSR-1` and `PSR-2` compliant and supports `Composer` integration.
 
-> IMPORTANT! If you want use this class in 5.2 or lower, you need remove namespaces.
+> **IMPORTANT!** If you want use this class in PHP 5.2 or lower, please contact [Olaf Erlandsen](#need-support) for FREE support.
 
 *Example #1:*
 
