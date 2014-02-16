@@ -1,6 +1,6 @@
-[![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP)
+[![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP) [![PHP version](https://badge.fury.io/ph/olaferlandsen%2Ffileupload.png)](http://badge.fury.io/ph/olaferlandsen%2Ffileupload) [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F3KYUX86HKN9J)
 
-[![PHP version](https://badge.fury.io/ph/olaferlandsen%2Ffileupload.png)](http://badge.fury.io/ph/olaferlandsen%2Ffileupload)
+
 
 
 
@@ -293,3 +293,13 @@ This method lets you add a new log.
 ### FileUpload::save(  )
 This method loads the file, applies filters and save the file to the set destination.
 > Returns `true` if successful, otherwise returns `false`.
+
+
+
+## Need Support?
+ * Skype: olaferlandsen
+ * [Email](mailto:info@infowebdevfreelance.com)
+
+
+## Donate a coffee to Olaf Erlandsen :)
+[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F3KYUX86HKN9J)
