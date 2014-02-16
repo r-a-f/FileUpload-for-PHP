@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP)
 
-[![GitHub version](https://badge.fury.io/gh/olaferlandsen%2FFileUpload-for-PHP.png)](http://badge.fury.io/gh/olaferlandsen%2FFileUpload-for-PHP)
+[![PHP version](https://badge.fury.io/ph/olaferlandsen%2Ffileupload.png)](http://badge.fury.io/ph/olaferlandsen%2Ffileupload)
 
 
 
