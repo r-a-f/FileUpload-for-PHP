@@ -1,0 +1,19 @@
+{
+  "name": "FileUpload",
+  "description": "A complete class to upload files with php 5 or higher, but the best: very simple to use.",
+  "version": "1.5",
+  "keywords": ["image", "upload", "file", "fileupload"],
+  "homepage": "https://github.com/olaferlandsen/FileUpload-for-PHP",
+  "author": "Olaf Erlandsen",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olaferlandsen/FileUpload-for-PHP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/olaferlandsen/FileUpload-for-PHP/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/olaferlandsen/FileUpload-for-PHP/blob/master/LICENSE"
+  }
+}
