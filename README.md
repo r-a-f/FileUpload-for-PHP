@@ -23,6 +23,18 @@ A complete class to upload files with php 5.3+ or higher, but the best: very sim
             echo "is Upload!";
         }
     ?>
+    <html>
+        <head>
+            <title>FileUpload Example</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        </head>
+        <body>
+            <form method="post" action="" enctype="multipart/form-data">
+                <input type="file" name="file" />
+                <input type="submit" value="Upload now!" />
+            </form>
+        </body>
+    </html>
 ```
 
 
