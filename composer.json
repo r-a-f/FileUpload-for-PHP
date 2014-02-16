@@ -1,0 +1,24 @@
+{
+    "name": "olaferlandsen/fileupload",
+    "type": "library",
+    "license": "MIT",
+    "description": "A complete class to upload files with php 5 or higher, but the best: very simple to use.",
+    "keywords": ["image", "upload", "file", "fileupload"],
+    "require": {
+        "php": ">=4.3.0",
+        "lib-pcre":">=7.3"
+    },
+    "homepage": "https://github.com/olaferlandsen/FileUpload-for-PHP",
+    "authors": [
+        {
+            "name": "Olaf Erlandsen",
+            "email": "info@webdevfreelance.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-0": {
+            "FileUpload": "src"
+        }
+    }
+}
