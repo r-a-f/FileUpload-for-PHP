@@ -25,7 +25,7 @@
     "minimum-stability": "stable",
     "support": {
         "email": "support@exemple.org",
-        "issues":"https://github.com/olaferlandsen/FileUpload-for-PHP/issues"
+        "issues":"https://github.com/olaferlandsen/FileUpload-for-PHP/issues",
         "source":"https://github.com/olaferlandsen/FileUpload-for-PHP"
     }
 }
