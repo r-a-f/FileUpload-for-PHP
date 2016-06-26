@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP) [![PHP version](https://badge.fury.io/ph/olaferlandsen%2Ffileupload.png)](http://badge.fury.io/ph/olaferlandsen%2Ffileupload) [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F2QG6HU4PJFAN) [![Facebook](http://webdevfreelance.com/webicons/webicon-facebook-s.png)](https://www.facebook.com/webdevfreelance)
+[![Build Status](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP.png?branch=master)](https://travis-ci.org/olaferlandsen/FileUpload-for-PHP) [![PHP version](https://badge.fury.io/ph/olaferlandsen%2Ffileupload.png)](http://badge.fury.io/ph/olaferlandsen%2Ffileupload) [![Donate](https://www.paypalobjects.com/es_XC/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8TJZSNT5JQUXL)
+ [![Facebook](http://webdevfreelance.com/webicons/webicon-facebook-s.png)](https://www.facebook.com/webdevfreelance)
 
 
 
