@@ -315,9 +315,4 @@ This method loads the file, applies filters and save the file to the set destina
 
 ## Need Support?
  * Skype: olaferlandsen
- * [Email](mailto:info@infowebdevfreelance.com)
- * [Facebook](https://www.facebook.com/webdevfreelance)
-
-
-## Donate a coffee to Olaf Erlandsen :)
-[![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=F3KYUX86HKN9J)
+ * [Email](mailto:olaftriskel@gmail.com)
