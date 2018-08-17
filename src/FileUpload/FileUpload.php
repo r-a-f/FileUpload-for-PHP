@@ -369,7 +369,7 @@ class FileUpload
     */
     public function setMimeHelping($name)
     {
-        if (!empty($mime) and is_string($name)) {
+        if (!empty($name) and is_string($name)) {
             if (array_key_exists($name, $this->mime_helping)) {
                 return $this->setAllowedMimeTypes($this->mime_helping[ $name ]);
             }
