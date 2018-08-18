@@ -348,7 +348,7 @@ class FileUpload
     public function setAllowMimeType($mime)
     {
         if (!empty($mime) AND is_string($mime)) {
-            if (preg_match("#^[-\w\+]+/[-\w\+]+$#", $mime)) {
+            if (preg_match("#^[-\w\+]+/[-\w\+\.]+$#", $mime)) {
                 $this->log("IMPORTANT! Mime %s enabled", $mime);
                 $this->allowed_mime_types[] = strtolower($mime);
                 $this->file["allowed_mime_types"][] = strtolower($mime);
@@ -369,7 +369,7 @@ class FileUpload
     */
     public function setMimeHelping($name)
     {
-        if (!empty($mime) and is_string($name)) {
+        if (!empty($name) and is_string($name)) {
             if (array_key_exists($name, $this->mime_helping)) {
                 return $this->setAllowedMimeTypes($this->mime_helping[ $name ]);
             }
